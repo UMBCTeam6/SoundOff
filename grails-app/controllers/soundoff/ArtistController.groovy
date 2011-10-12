@@ -2,6 +2,8 @@ package soundoff
 
 class ArtistController {
 
+    static navigation = true
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
