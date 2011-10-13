@@ -93,3 +93,4 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'soundoff.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'soundoff.UserRole'
 grails.plugins.springsecurity.authority.className = 'soundoff.Role'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = "/home"
