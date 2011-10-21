@@ -10,12 +10,14 @@ class User {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+    String theme
 
     static hasMany = [ reviews: Review ]
     
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+        theme nullable: true
 	}
 
 	static mapping = {
