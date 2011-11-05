@@ -23,13 +23,6 @@
                     <tbody>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.id.label" default="Id" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: albumInstance, field: "id")}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="album.artist.label" default="Artist" /></td>
                             
                             <td valign="top" class="value"><g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.encodeAsHTML()}</g:link></td>

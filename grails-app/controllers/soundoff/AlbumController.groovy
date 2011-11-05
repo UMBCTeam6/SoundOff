@@ -2,7 +2,15 @@ package soundoff
 
 class AlbumController {
 
-    static navigation = true
+    static navigation = [
+        order: 2,
+        title: 'Albums',
+        action: 'list',
+        subItems: [
+            [action:'create', order: 0, title: 'Create'],
+            [action:'list', order: 1, title: 'List']
+        ]
+    ]
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -39,7 +47,9 @@ class AlbumController {
             redirect(action: "list")
         }
         else {
-            [albumInstance: albumInstance]
+            // we're going to add a aggregate rating for this album
+            
+            [albumInstance: albumInstance, aggregateRating: albumInstance.getAggregateReview() ]
         }
     }
 

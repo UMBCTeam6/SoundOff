@@ -23,6 +23,7 @@
                 <g:renderErrors bean="${albumInstance}" as="list" />
             </div>
             </g:hasErrors>
+            <g:if test="${soundoff.Artist.count() > 0}">
             <g:form action="save" >
                 <div class="dialog">
                     <table>
@@ -30,10 +31,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="artist"><g:message code="album.artist.label" default="Artist" /></label>
+                                    <label for="artist">Artist</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artist', 'errors')}">
-                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" value="${albumInstance?.artist?.id}"  />
+                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" value="${albumInstance?.artist?.name}"  />
                                 </td>
                             </tr>
                         
@@ -62,6 +63,10 @@
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
             </g:form>
+            </g:if>
+            <g:else>
+                <div align="center">No artists have been added to the database.  <g:link action="create" controller="artist">Add some!</g:link></div>
+            </g:else>
         </div>
     </body>
 </html>

@@ -11,6 +11,7 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
+        <!-- TODO: clean up this front page. -->
         <div id="header">
             <img src="${resource(dir:'images', file:'soundoff_logo.png')}" alt="SoundOff" border="0" />
             <div id="search">

@@ -2,7 +2,15 @@ package soundoff
 
 class UserController {
 
-    static navigation = true
+    static navigation = [
+        order: 4,
+        title: 'Preferences',
+        action: 'list',
+        subItems: [
+            [action:'create', order: 0, title: 'Create'],
+            [action:'list', order: 1, title: 'List']
+        ]
+    ]
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
