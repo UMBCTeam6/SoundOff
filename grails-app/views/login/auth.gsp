@@ -1,6 +1,5 @@
 <html>
 <head>
-	<meta name='layout' content='main'/>
 	<title>SoundOff - Login</title>
 	<style type='text/css' media='screen'>
 	#login {
