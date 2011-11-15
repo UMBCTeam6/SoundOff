@@ -21,12 +21,6 @@ class Album {
      * as to influence the rating moreso than usual users.
      */
     def getAggregateRating() {
-        // 
-        def total = 0
-        // for each reviews
-        //   if the user is a moderator, add the rating twice
-        //   otherwise, add once
-        // 
-        return total / reviews.size()
+        return reviews.collect { (it.author.role == "Moderator" ? it.rating * 2 : it.rating) }.sum() / reviews.size()
     }
 }
