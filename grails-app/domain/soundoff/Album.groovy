@@ -21,6 +21,16 @@ class Album {
      * as to influence the rating moreso than usual users.
      */
     def getAggregateRating() {
-        return reviews.collect { (it.author.role == "Moderator" ? it.rating * 2 : it.rating) }.sum() / reviews.size()
+        return reviews.collect { r ->
+            def creatorRole = UserRole.findByUser(r.creator).role.authority
+            if (creatorRole && creatorRole == "ROLE_MODERATOR")
+            {
+                r.rating * 2
+            }
+            else 
+            {
+                r.rating
+            }                
+        }.sum() / reviews.size()
     }
 }
