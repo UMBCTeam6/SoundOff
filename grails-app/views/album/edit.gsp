@@ -1,5 +1,4 @@
 
-
 <%@ page import="soundoff.Album" %>
 <html>
     <head>
@@ -7,15 +6,14 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'album.label', default: 'Album')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <nav:resources />
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+        <div id="nav">
+            <nav:render />
+            <nav:renderSubItems />
         </div>
         <div class="body">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
