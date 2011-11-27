@@ -13,20 +13,29 @@
         </div>
         <!-- TODO: clean up this front page. -->
         <div id="header">
-            <img src="${resource(dir:'images', file:'soundoff_logo.png')}" alt="SoundOff" border="0" />
-            <div id="search">
-                    <g:form name="searchForm" action="search" controller="home">
-                    <g:textField id="query" name="query" value="${query}" size="50" />
-                    <div>
-                        <g:submitButton name="searchButton" value="Search" />
+            <div id="searchwrapper">
+                <div id="searchcolumn">
+                    <div class="padder">
+                        <g:form name="searchForm" action="search" controller="home">
+                        <g:textField id="query" name="query" value="${query}" size="50" />
+                             <g:submitButton name="searchButton" value="Search" />
+                       <div>
+                        </div>
+                        </g:form>
                     </div>
-                </g:form>
+                </div>
             </div>
-            <div id="user">
-                <g:link controller="logout">Logout <sec:username /></g:link>
+            <div id="imgcolumn">
+                <div class="padder">
+                    <img src="${resource(dir:'images', file:'soundoff_logo.png')}" height="60" alt="SoundOff" border="0" />
+                </div>
+            </div>
+            <div id="usercolumn">
+                <div class="padder">
+                    <g:link controller="logout">Logout <sec:username /></g:link>
+                </div>
             </div>
         </div>
-        
         <g:layoutBody />
     </body>
 </html>

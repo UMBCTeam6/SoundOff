@@ -34,7 +34,7 @@
                                     <label for="artist">Artist</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artist', 'errors')}">
-                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" value="${albumInstance?.artist?.name}"  />
+                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" optionValue="name" value="${albumInstance?.artist?.name}"  />
                                 </td>
                             </tr>
                         
