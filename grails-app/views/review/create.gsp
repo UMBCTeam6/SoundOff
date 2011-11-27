@@ -7,11 +7,12 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'review.label', default: 'Review')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <nav:resources />
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+        <div id="nav">
+            <nav:render />
+            <nav:renderSubItems />
         </div>
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
@@ -24,6 +25,8 @@
             </div>
             </g:hasErrors>
             <g:form action="save" >
+                <!-- TODO: how do we get the user ID here? -->
+                <g:hiddenField name="creator.id" value="1" />
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -33,16 +36,7 @@
                                     <label for="album"><g:message code="review.album.label" default="Album" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'album', 'errors')}">
-                                    <g:select name="album.id" from="${soundoff.Album.list()}" optionKey="id" value="${reviewInstance?.album?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="creator"><g:message code="review.creator.label" default="Creator" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'creator', 'errors')}">
-                                    <g:select name="creator.id" from="${soundoff.User.list()}" optionKey="id" value="${reviewInstance?.creator?.id}"  />
+                                    <g:select name="album.id" from="${soundoff.Album.list()}" optionKey="id" optionValue="name" value="${reviewInstance?.album?.id}"  />
                                 </td>
                             </tr>
                         

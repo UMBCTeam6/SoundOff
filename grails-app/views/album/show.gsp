@@ -23,34 +23,31 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="album.artist.label" default="Artist" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.name}</g:link></td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="album.name.label" default="Name" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: albumInstance, field: "name")}</td>
+                            <td valign="top" class="value"><g:link controller="album" action="show" id="${albumInstance?.id}">${albumInstance?.name}</g:link></td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.reviews.label" default="Reviews" /></td>
+                            <td valign="top" class="name"><g:message code="album.year.label" default="Year released" /></td>
+                            
+                            <td valign="top" class="value">${albumInstance?.year}</td>
+                            
+                        </tr>                        
+                                            
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="album.reviews.label" default="Rating" /></td>
                             
                             <td valign="top" style="text-align: left;" class="value">
-                                <ul>
-                                <g:each in="${albumInstance.reviews}" var="r">
-                                    <li><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
+                                <div class="rateit" data-rateit-value="${aggregateReview}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                <g:link controller="reviews" action="list">(${albumInstance?.reviews?.size()} reviews)</g:link>
                             </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.year.label" default="Year" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: albumInstance, field: "year")}</td>
                             
                         </tr>
                     

@@ -20,28 +20,24 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                            <g:sortableColumn property="id" title="${message(code: 'album.id.label', default: 'Id')}" />
-                        
+                                               
                             <th><g:message code="album.artist.label" default="Artist" /></th>
                         
                             <g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
                         
-                            <g:sortableColumn property="year" title="${message(code: 'album.year.label', default: 'Year')}" />
+                            <g:sortableColumn property="year" title="Release date" />
                         
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${albumInstanceList}" status="i" var="albumInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                                              
+                            <td>${fieldValue(bean: albumInstance, field: "artist.name")}</td>
                         
-                            <td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "id")}</g:link></td>
+                            <td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "name")}</g:link></td>
                         
-                            <td>${fieldValue(bean: albumInstance, field: "artist")}</td>
-                        
-                            <td>${fieldValue(bean: albumInstance, field: "name")}</td>
-                        
-                            <td>${fieldValue(bean: albumInstance, field: "year")}</td>
+                            <td>${albumInstance.year}</td>
                         
                         </tr>
                     </g:each>

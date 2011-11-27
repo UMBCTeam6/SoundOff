@@ -1,6 +1,7 @@
 import soundoff.User
 import soundoff.Role
 import soundoff.UserRole
+import soundoff.Artist
 
 class BootStrap {
 
@@ -19,6 +20,11 @@ class BootStrap {
  
         if (!adminUser.authorities.contains(adminRole)) {
             UserRole.create adminUser, adminRole
+        }
+        
+        // create some fake data for now
+        ["Linkin Park", "Jack Johnson", "Stone Temple Pilots"].each { ar ->
+            new Artist(name: ar).save(failOnError: false)
         }
     }
     def destroy = {

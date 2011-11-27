@@ -11,8 +11,9 @@ class Album {
     static hasMany = [ reviews: Review ]
 
     static constraints = {
-        name(null:false)
-        year(null:false)
+        name(nullable:false)
+        year(nullable:false)
+        artwork(nullable:true, maxSize: 100000)
     }
     
     /**
@@ -21,16 +22,21 @@ class Album {
      * as to influence the rating moreso than usual users.
      */
     def getAggregateRating() {
-        return reviews.collect { r ->
-            def creatorRole = UserRole.findByUser(r.creator).role.authority
-            if (creatorRole && creatorRole == "ROLE_MODERATOR")
-            {
-                r.rating * 2
-            }
-            else 
-            {
-                r.rating
-            }                
-        }.sum() / reviews.size()
+        def rating = 0
+        if (reviews.size() > 0)
+        {
+            rating = reviews.collect { r ->
+                def creatorRole = UserRole.findByUser(r.creator).role.authority
+                if (creatorRole && creatorRole == "ROLE_MODERATOR")
+                {
+                    r.rating * 2
+                }
+                else 
+                {
+                    r.rating
+                }                
+            }.sum() / reviews.size()
+        }
+        return rating
     }
 }

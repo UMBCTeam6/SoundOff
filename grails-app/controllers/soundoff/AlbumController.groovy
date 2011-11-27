@@ -49,7 +49,7 @@ class AlbumController {
         else {
             // we're going to add a aggregate rating for this album
             
-            [albumInstance: albumInstance, aggregateRating: albumInstance.getAggregateReview() ]
+            [albumInstance: albumInstance, aggregateRating: albumInstance.getAggregateRating() ]
         }
     }
 
