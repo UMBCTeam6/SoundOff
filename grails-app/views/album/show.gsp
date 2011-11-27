@@ -12,10 +12,16 @@
             <nav:render />
             <nav:renderSubItems />
         </div>
+        <script type="text/javascript">
+            $(function($) {
+                $('div.rateit').rateit();
+            }); 
+        </script>
         <div class="body">
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            
             <div class="dialog">
                 <table>
                     <tbody>
@@ -45,7 +51,7 @@
                             <td valign="top" class="name"><g:message code="album.reviews.label" default="Rating" /></td>
                             
                             <td valign="top" style="text-align: left;" class="value">
-                                <div class="rateit" data-rateit-value="${aggregateReview}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                <div class="rateit" data-rateit-value="${aggregateRating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                                 <g:link controller="reviews" action="list">(${albumInstance?.reviews?.size()} reviews)</g:link>
                             </td>
                             

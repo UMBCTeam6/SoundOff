@@ -9,7 +9,6 @@
 
         <g:javascript library="jquery" plugin="jquery" />
         <g:javascript src="jquery.rateit.min.js" />
-        <g:javascript library="application" />
     </head>
     <body>
         <div id="spinner" class="spinner" style="display:none;">

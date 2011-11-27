@@ -14,6 +14,11 @@
             <nav:render />
             <nav:renderSubItems />
         </div>
+        <script type="text/javascript">
+            $(function($) {
+                $('div.rateit').rateit();
+            }); 
+        </script>
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -25,8 +30,6 @@
             </div>
             </g:hasErrors>
             <g:form action="save" >
-                <!-- TODO: how do we get the user ID here? -->
-                <g:hiddenField name="creator.id" value="1" />
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -45,7 +48,8 @@
                                     <label for="rating"><g:message code="review.rating.label" default="Rating" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'rating', 'errors')}">
-                                    <g:textField name="rating" value="${fieldValue(bean: reviewInstance, field: 'rating')}" />
+                                    <input type="range" name="rating" id="rating" value="${reviewInstance?.rating ?: 0}" step="1" max="5" min="0" />
+                                    <div class="rateit" data-rateit-backingfld="#rating"></div>
                                 </td>
                             </tr>
                         

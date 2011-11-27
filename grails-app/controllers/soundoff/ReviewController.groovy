@@ -1,6 +1,8 @@
 package soundoff
 
 class ReviewController {
+    
+    def springSecurityService
 
     static navigation = [
         order: 3,
@@ -31,6 +33,8 @@ class ReviewController {
 
     def save = {
         def reviewInstance = new Review(params)
+        reviewInstance.creator = springSecurityService.currentUser
+        
         if (reviewInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])}"
             redirect(action: "show", id: reviewInstance.id)
