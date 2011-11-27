@@ -27,7 +27,7 @@ class HomeController {
         }
         
         [ 
-            albums: Album.findAllByNameIlike("%${params.query}%") 
+            albums: Album.findAllByNameIlike("%${params.query}%"), 
             artists: Artist.findAllByNameIlike("%${params.query}%"), 
             reviews: reviewResults,
             query: params.query
