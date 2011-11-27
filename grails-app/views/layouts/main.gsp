@@ -15,11 +15,12 @@
         <div id="header">
             <img src="${resource(dir:'images', file:'soundoff_logo.png')}" alt="SoundOff" border="0" />
             <div id="search">
-                <g:textField id="main_search" name="main_search" value="${search}" size="50" />
-                <div>
-                    <button>Search</button>
-                    <g:link action="advanced" controller="search">Adv Search</g:link>
-                </div>
+                    <g:form name="searchForm" action="search" controller="home">
+                    <g:textField id="query" name="query" value="${query}" size="50" />
+                    <div>
+                        <g:submitButton name="searchButton" value="Search" />
+                    </div>
+                </g:form>
             </div>
             <div id="user">
                 <g:link controller="logout">Logout <sec:username /></g:link>
