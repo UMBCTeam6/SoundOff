@@ -36,7 +36,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="album.name.label" default="Name" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="album" action="show" id="${albumInstance?.id}">${albumInstance?.name}</g:link></td>
+                            <td valign="top" class="value">${albumInstance?.name}</td>
                             
                         </tr>
                     
@@ -52,7 +52,7 @@
                             
                             <td valign="top" style="text-align: left;" class="value">
                                 <div class="rateit" data-rateit-value="${aggregateRating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                                <g:link controller="reviews" action="list">(${albumInstance?.reviews?.size()} reviews)</g:link>
+                                <g:link controller="review" action="list" params="[albumId: albumInstance.id ]">(${albumInstance?.reviews?.size()} reviews)</g:link>
                             </td>
                             
                         </tr>

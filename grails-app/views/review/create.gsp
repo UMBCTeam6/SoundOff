@@ -49,7 +49,7 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'rating', 'errors')}">
                                     <input type="range" name="rating" id="rating" value="${reviewInstance?.rating ?: 0}" step="1" max="5" min="0" />
-                                    <div class="rateit" data-rateit-backingfld="#rating"></div>
+                                    <div class="rateit" data-rateit-backingfld="#rating" data-rateit-resetable="false"></div>
                                 </td>
                             </tr>
                         

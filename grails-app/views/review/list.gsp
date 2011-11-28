@@ -13,6 +13,11 @@
             <nav:render />
             <nav:renderSubItems />
         </div>
+        <script type="text/javascript">
+            $(function($) {
+                $('div.rateit').rateit();
+            }); 
+        </script>
         <div class="body">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -22,17 +27,10 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                            <g:sortableColumn property="id" title="${message(code: 'review.id.label', default: 'Id')}" />
-                        
-                            <th><g:message code="review.album.label" default="Album" /></th>
-                        
-                            <th><g:message code="review.creator.label" default="Creator" /></th>
-                        
-                            <g:sortableColumn property="rating" title="${message(code: 'review.rating.label', default: 'Rating')}" />
-                        
-                            <g:sortableColumn property="text" title="${message(code: 'review.text.label', default: 'Text')}" />
-                        
+                                                
+                            <th><g:message code="review.album.label" default="Album" /></th>                       
+                            <th><g:message code="review.creator.label" default="Creator" /></th>                       
+                            <g:sortableColumn property="rating" title="${message(code: 'review.rating.label', default: 'Rating')}" />                      
                             <g:sortableColumn property="title" title="${message(code: 'review.title.label', default: 'Title')}" />
                         
                         </tr>
@@ -40,18 +38,11 @@
                     <tbody>
                     <g:each in="${reviewInstanceList}" status="i" var="reviewInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
-                            <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "id")}</g:link></td>
-                        
-                            <td>${fieldValue(bean: reviewInstance, field: "album")}</td>
-                        
-                            <td>${fieldValue(bean: reviewInstance, field: "creator")}</td>
-                        
-                            <td>${fieldValue(bean: reviewInstance, field: "rating")}</td>
-                        
-                            <td>${fieldValue(bean: reviewInstance, field: "text")}</td>
-                        
-                            <td>${fieldValue(bean: reviewInstance, field: "title")}</td>
+                                               
+                            <td>${fieldValue(bean: reviewInstance, field: "album.artist.name")} - ${fieldValue(bean: reviewInstance, field: "album.name")}</td>                      
+                            <td>${fieldValue(bean: reviewInstance, field: "creator.username")}</td>                       
+                            <td><div class="rateit" data-rateit-value="${reviewInstance.rating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div></td>                        
+                            <td><g:link controller="review" action="show" id="${reviewInstance?.id}">${fieldValue(bean: reviewInstance, field: "title")}</g:link></td>
                         
                         </tr>
                     </g:each>

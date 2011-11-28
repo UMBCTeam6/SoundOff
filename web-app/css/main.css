@@ -302,3 +302,17 @@ th.desc a {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
+
+.searchHeader {
+    font-size: 14pt;
+    text-decoration: underline;
+    margin: 4px;
+    padding: 4px;
+}
+
+.searchResults div {
+    padding: 4px;
+    margin: 4px;
+    margin-left: 10px;
+    padding-left: 10px;
+}

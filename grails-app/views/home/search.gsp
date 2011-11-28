@@ -15,31 +15,32 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <h1>Search results</h1>
             <g:if test="${ artists?.size() > 0 }">
                 <div class="searchHeader">Artists</div>
-                <ul>
+                <div class="searchResults">
                 <g:each var="artist" in="${artists}">
-                    <li><g:link controller="artist" action="show" id="${artist.id}">${artist.name}</g:link></li>
+                    <div><g:link controller="artist" action="show" id="${artist.id}">${artist.name}</g:link></div>
                 </g:each>
-                </ul>
+                </div>
             </g:if>
             <g:if test="${ albums?.size() > 0 }">
                 <div class="searchHeader">Albums</div>
-                <ul>
+                <div class="searchResults">
                 <!-- TODO: add in the album artwork? -->
                 <g:each var="album" in="${albums}">
-                    <li><g:link controller="album" action="show" id="${album.id}">${album.name}</g:link></li>
+                    <div><g:link controller="album" action="show" id="${album.id}">${album.name}</g:link></div>
                 </g:each>
-                </ul>
+                </div>
             </g:if>
             <g:if test="${ reviews?.size() > 0 }">
                 <div class="searchHeader">Reviews</div>
-                <ul>
+                <div class="searchResults">
                 <!-- TODO: add more information about the review -->
                 <g:each var="review" in="${reviews}">
-                    <li><g:link controller="review" action="show" id="${review.id}">${review.title}</g:link></li>
+                    <div><g:link controller="review" action="show" id="${review.id}">${review.title}</g:link> by ${review?.creator?.username}</div>
                 </g:each>
-                </ul>
+                </div>
             </g:if>
         </div>
     </body>
