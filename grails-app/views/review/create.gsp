@@ -52,22 +52,22 @@
                                     <div class="rateit" data-rateit-backingfld="#rating" data-rateit-resetable="false"></div>
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="text"><g:message code="review.text.label" default="Text" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'text', 'errors')}">
-                                    <g:textField name="text" value="${reviewInstance?.text}" />
-                                </td>
-                            </tr>
-                        
+                                               
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="title"><g:message code="review.title.label" default="Title" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'title', 'errors')}">
-                                    <g:textField name="title" value="${reviewInstance?.title}" />
+                                    <g:textField name="title" value="${reviewInstance?.title}" size="60" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="text"><g:message code="review.text.label" default="Text" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'text', 'errors')}">
+                                    <g:textArea rows="15" cols="80" name="text" value="${reviewInstance?.text}" />
                                 </td>
                             </tr>
                         
