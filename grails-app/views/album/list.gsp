@@ -12,6 +12,11 @@
             <nav:render />
             <nav:renderSubItems />
         </div>
+        <script type="text/javascript">
+            $(function($) {
+                $('div.rateit').rateit();
+            }); 
+        </script>
         <div class="body">
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -26,6 +31,8 @@
                             <g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
                         
                             <g:sortableColumn property="year" title="Release date" />
+                            
+                            <th>Rating</th>
                         
                         </tr>
                     </thead>
@@ -39,6 +46,7 @@
                         
                             <td>${albumInstance.year}</td>
                         
+                            <td><div class="rateit" data-rateit-value="${albumInstance.getAggregateRating()}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                         </tr>
                     </g:each>
                     </tbody>

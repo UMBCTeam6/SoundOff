@@ -30,7 +30,7 @@
             </div>
             <div id="imgcolumn">
                 <div class="padder">
-                    <img src="${resource(dir:'images', file:'soundoff_logo.png')}" height="60" alt="SoundOff" border="0" />
+                    <img src="${resource(dir:'images', file:'soundoff_logo.png')}" height="70" alt="SoundOff" border="0" />
                 </div>
             </div>
             <div id="usercolumn">
