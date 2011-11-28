@@ -1,5 +1,7 @@
 package soundoff
 
+import grails.plugins.springsecurity.Secured
+
 class HomeController {
 
     static navigation = [
@@ -8,6 +10,7 @@ class HomeController {
         action: 'index'
     ]
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def index = { 
         render(view:"index")
     }
@@ -16,6 +19,7 @@ class HomeController {
      * Searches the albums, artists and reviews.  This does 3 different searches in order to 
      * find the correct information.
      */
+     @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def search = {
 
         def reviewCriteria = Review.createCriteria()

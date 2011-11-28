@@ -1,5 +1,7 @@
 package soundoff
 
+import grails.plugins.springsecurity.Secured
+
 class ReviewController {
     
     def springSecurityService

@@ -1,5 +1,7 @@
 package soundoff
 
+import grails.plugins.springsecurity.Secured
+
 class ArtistController {
 
     static navigation = [
@@ -14,21 +16,25 @@ class ArtistController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def index = {
         redirect(action: "list", params: params)
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [artistInstanceList: Artist.list(params), artistInstanceTotal: Artist.count()]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def create = {
         def artistInstance = new Artist()
         artistInstance.properties = params
         return [artistInstance: artistInstance]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def save = {
         def artistInstance = new Artist(params)
         if (artistInstance.save(flush: true)) {
@@ -40,6 +46,7 @@ class ArtistController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def show = {
         def artistInstance = Artist.get(params.id)
         if (!artistInstance) {
@@ -51,6 +58,7 @@ class ArtistController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY', 'ROLE_ADMIN'])
     def edit = {
         def artistInstance = Artist.get(params.id)
         if (!artistInstance) {
@@ -61,7 +69,8 @@ class ArtistController {
             return [artistInstance: artistInstance]
         }
     }
-
+    
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def update = {
         def artistInstance = Artist.get(params.id)
         if (artistInstance) {
@@ -89,6 +98,7 @@ class ArtistController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED', 'ROLE_ADMIN'])
     def delete = {
         def artistInstance = Artist.get(params.id)
         if (artistInstance) {

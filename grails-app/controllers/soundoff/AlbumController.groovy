@@ -1,5 +1,7 @@
 package soundoff
 
+import grails.plugins.springsecurity.Secured
+
 class AlbumController {
 
     static navigation = [
@@ -14,25 +16,29 @@ class AlbumController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def index = {
         redirect(action: "list", params: params)
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [albumInstanceList: Album.list(params), albumInstanceTotal: Album.count()]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def create = {
         def albumInstance = new Album()
         albumInstance.properties = params
         return [albumInstance: albumInstance]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def save = {
         def albumInstance = new Album(params)
         if (albumInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'album.label', default: 'Album'), albumInstance.id])}"
+            flash.message = "Album '${albumInstance.name}' created."
             redirect(action: "show", id: albumInstance.id)
         }
         else {
@@ -40,6 +46,7 @@ class AlbumController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def show = {
         def albumInstance = Album.get(params.id)
         if (!albumInstance) {
@@ -53,6 +60,7 @@ class AlbumController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY', 'ROLE_ADMIN'])
     def edit = {
         def albumInstance = Album.get(params.id)
         if (!albumInstance) {
@@ -64,6 +72,7 @@ class AlbumController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def update = {
         def albumInstance = Album.get(params.id)
         if (albumInstance) {
@@ -91,6 +100,7 @@ class AlbumController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED', 'ROLE_ADMIN'])
     def delete = {
         def albumInstance = Album.get(params.id)
         if (albumInstance) {
