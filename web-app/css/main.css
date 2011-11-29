@@ -331,3 +331,21 @@ th.desc a {
     padding-left: 10px;
     margin-left: 10px;
 }
+
+.title {
+    font-size: 16pt;
+    border-bottom: 1px solid black;
+    padding: 4px;
+    margin: 4px;
+}
+
+.userinfo {
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.reviewtext {
+    padding: 8px;
+    margin: 8px;
+    font-size: 11pt;
+}
