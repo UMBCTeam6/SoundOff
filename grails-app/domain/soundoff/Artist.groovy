@@ -5,6 +5,6 @@ class Artist {
     String name
     static hasMany = [ albums: Album ]
     static constraints = {
-        name(null:false)
+        name(nullable:false, unique:true, blank:false)
     }
 }

@@ -49,7 +49,7 @@ class HomeController {
     def save = {
         def userInstance = new User(params)
         if (userInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])}"
+            flash.message = "User '${userInstance.username}' has been created.  Please login."
             redirect(controller: "login", action: "auth")
         }
         else {

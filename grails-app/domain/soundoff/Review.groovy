@@ -9,6 +9,8 @@ class Review {
     static belongsTo = [ album: Album, creator: User ]
     
     static constraints = {
+        title(nullable: false, blank: false)
+        text(nullable: false, blank: false)
         rating(min:1)
     }
 }

@@ -11,7 +11,7 @@ class Album {
     static hasMany = [ reviews: Review ]
 
     static constraints = {
-        name(nullable:false)
+        name(nullable:false, unique: true, blank: false)
         year(nullable:false)
         artwork(nullable:true, maxSize: 100000)
     }
