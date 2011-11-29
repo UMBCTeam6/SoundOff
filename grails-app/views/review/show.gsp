@@ -1,4 +1,3 @@
-
 <%@ page import="soundoff.Review" %>
 <html>
     <head>
@@ -22,55 +21,17 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.album.artist.label" default="Artist" /></td>
-                            
-                            <td valign="top" class="value"><g:link controller="artist" action="show" id="${reviewInstance?.album?.artist?.id}">${reviewInstance?.album?.artist?.name}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.album.label" default="Album" /></td>
-                            
-                            <td valign="top" class="value"><g:link controller="album" action="show" id="${reviewInstance?.album?.id}">${reviewInstance?.album?.name}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.creator.label" default="Reviewer" /></td>
-                            
-                            <td valign="top" class="value"><g:link controller="user" action="show" id="${reviewInstance?.creator?.id}">${reviewInstance?.creator?.username}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.rating.label" default="Rating" /></td>
-                            
-                            <td valign="top" class="value"><div class="rateit" data-rateit-value="${reviewInstance.rating}" data-rateit-ispreset="true" data-rateit-readonly="true"></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.title.label" default="Title" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: reviewInstance, field: "title")}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="review.text.label" default="Text" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: reviewInstance, field: "text")}</td>
-                            
-                        </tr>
-                                        
-                    </tbody>
-                </table>
+            <div class="title">
+                ${reviewInstance.title} <div class="rateit" data-rateit-value="${reviewInstance.rating}" data-rateit-ispreset="true" data-rateit-readonly="true">
             </div>
+            <hr>
+            <div class="userinfo">
+                Review of <g:link controller="album" action="show" id="${reviewInstance.album.id}">${reviewInstance.album.artist.name} - ${reviewInstance.album.name}</g:link> by ${reviewInstance.creator.username} (<g:formatDate format="MMMMM d, yyyy" date="${reviewInstance.written}" />)
+            </div>
+            <div class="reviewtext">
+                ${reviewInstance.text}
+            </div>
+            
         </div>
     </body>
 </html>
