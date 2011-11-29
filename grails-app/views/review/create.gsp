@@ -1,6 +1,7 @@
 
 
 <%@ page import="soundoff.Review" %>
+<%@ page import="soundoff.Album" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -20,7 +21,6 @@
             }); 
         </script>
         <div class="body">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -29,6 +29,8 @@
                 <g:renderErrors bean="${reviewInstance}" as="list" />
             </div>
             </g:hasErrors>
+            <g:if test="${Album.list().size() > 0}">
+            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:form action="save" >
                 <div class="dialog">
                     <table>
@@ -78,6 +80,10 @@
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
             </g:form>
+            </g:if>
+            <g:else>
+                <div>No albums have been added yet!  <g:link controller="album" action="create">Add some!</g:link></div>
+            </g:else>
         </div>
     </body>
 </html>

@@ -25,7 +25,8 @@
                 <table>
                     <thead>
                         <tr>
-                                               
+                            <th></th>
+                            
                             <th><g:message code="album.artist.label" default="Artist" /></th>
                         
                             <g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
@@ -39,14 +40,16 @@
                     <tbody>
                     <g:each in="${albumInstanceList}" status="i" var="albumInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                                              
-                            <td>${fieldValue(bean: albumInstance, field: "artist.name")}</td>
+
+                            <td valign="middle"><img height="30" src="${createLink(controller: 'album', action: 'viewImage', id: albumInstance.id)}" /></td>
+                                          
+                            <td valign="middle">${fieldValue(bean: albumInstance, field: "artist.name")}</td>
                         
-                            <td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "name")}</g:link></td>
+                            <td valign="middle"><g:link action="show" id="${albumInstance.id}">${fieldValue(bean: albumInstance, field: "name")}</g:link></td>
                         
-                            <td>${albumInstance.year}</td>
+                            <td valign="middle">${albumInstance.year}</td>
                         
-                            <td><div class="rateit" data-rateit-value="${albumInstance.getAggregateRating()}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                            <td valign="middle"><div class="rateit" data-rateit-value="${albumInstance.getAggregateRating()}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                         </tr>
                     </g:each>
                     </tbody>

@@ -1,5 +1,6 @@
 
 <%@ page import="soundoff.Album" %>
+<%@ page import="soundoff.Artist" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,7 +15,7 @@
             <nav:renderSubItems />
         </div>
         <div class="body">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+            
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -24,7 +25,8 @@
             </div>
             </g:hasErrors>
             <g:if test="${soundoff.Artist.count() > 0}">
-            <g:form action="save" >
+            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+            <g:form action="save" enctype="multipart/form-data">
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -53,6 +55,15 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'year', 'errors')}">
                                     <g:textField name="year" value="${fieldValue(bean: albumInstance, field: 'year')}" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="artwork"><g:message code="album.artwork.label" default="Artwork" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artwork')}" />
+                                    <input type="file" name="artwork" value="${fieldValue(bean: albumInstance, field: 'artwork')}" />
                                 </td>
                             </tr>
                         

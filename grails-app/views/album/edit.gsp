@@ -22,7 +22,7 @@
                 <g:renderErrors bean="${albumInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form method="post" enctype="multipart/form-data">
                 <g:hiddenField name="id" value="${albumInstance?.id}" />
                 <g:hiddenField name="version" value="${albumInstance?.version}" />
                 <div class="dialog">
@@ -34,7 +34,7 @@
                                   <label for="artist"><g:message code="album.artist.label" default="Artist" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artist', 'errors')}">
-                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" value="${albumInstance?.artist?.id}"  />
+                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" optionValue="name" value="${albumInstance?.artist?.id}"  />
                                 </td>
                             </tr>
                         
@@ -49,29 +49,21 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="reviews"><g:message code="album.reviews.label" default="Reviews" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'reviews', 'errors')}">
-                                    
-<ul>
-<g:each in="${albumInstance?.reviews?}" var="r">
-    <li><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
-</g:each>
-</ul>
-<g:link controller="review" action="create" params="['album.id': albumInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'review.label', default: 'Review')])}</g:link>
-
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                   <label for="year"><g:message code="album.year.label" default="Year" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'year', 'errors')}">
-                                    <g:textField name="year" value="${fieldValue(bean: albumInstance, field: 'year')}" />
+                                    <g:textField name="year" value="${albumInstance.year}" />
+                                </td>
+                            </tr>                  
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="artwork"><g:message code="album.artwork.label" default="Artwork" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artwork')}" />
+                                    <input type="file" name="artwork" value="${fieldValue(bean: albumInstance, field: 'artwork')}" />
                                 </td>
                             </tr>
-                        
                         </tbody>
                     </table>
                 </div>

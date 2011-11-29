@@ -14,7 +14,7 @@ class HomeController {
 
     @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def index = { 
-        render(view:"index")
+        [ recentReviews: Review.list([max: 5, order: "desc" ]) ]
     }
     
     /**

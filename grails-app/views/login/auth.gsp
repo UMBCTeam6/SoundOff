@@ -1,21 +1,10 @@
 <html>
 <head>
 	<title>SoundOff - Login</title>
-    <style>
-        .fheader {
-            font-size: 16pt;
-            font-weight: bold;
-            background-color: #e8e8e8;
-            padding: 5px;
-            margin: 5px;
-        }
-    </style>
+     <meta name="layout" content="login" />
 </head>
 
 <body>
-    <div style="text-align: center; width: 100%">
-        <img src="${resource(dir:'images', file:'soundoff_logo.png')}" height="250" alt="SoundOff" border="0" />
-    </div>
     <div id='login' align="center" width="40%">
             <div class='fheader'><g:message code="springSecurity.login.header"/></div>
 
@@ -55,7 +44,7 @@
 			</table>
 		</form>
 	</div>
-</div>
+
 <script type='text/javascript'>
 	<!--
 	(function() {

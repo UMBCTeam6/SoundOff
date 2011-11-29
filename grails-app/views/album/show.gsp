@@ -56,6 +56,12 @@
                             </td>
                             
                         </tr>
+                        
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="album.year.label" default="Artwork" /></td>                         
+                            <td valign="top" class="value"><img src="${createLink(controller: 'album', action: 'viewImage', id: albumInstance.id)}" /></td>
+                            
+                        </tr>                        
                     
                     </tbody>
                 </table>

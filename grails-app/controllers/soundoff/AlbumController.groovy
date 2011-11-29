@@ -119,4 +119,16 @@ class AlbumController {
             redirect(action: "list")
         }
     }
+    
+    def viewImage = {
+        def albumInstance = Album.get(params.id)
+        if (albumInstance) {
+            response.contentType = "image/jpeg"
+            response.contentLength = albumInstance.artwork.length
+            response.outputStream << albumInstance.artwork
+        }
+        else {
+            // TODO: show a default?
+        }
+    }
 }

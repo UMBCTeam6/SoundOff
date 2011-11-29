@@ -1,20 +1,21 @@
 
 
 <%@ page import="soundoff.User" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title>SoundOff - Create user</title>
+        
+        <meta name="layout" content="login" />
+        <style>
+        body { text-align: center }
+        </style>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-        </div>
-        <div class="body">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+        <div class="body" align="center" width="40%">
+            <div class='fheader'>Create user</div>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -23,9 +24,9 @@
                 <g:renderErrors bean="${userInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="save" >
+            <g:form action="save" onsubmit="return verifyPassword()">
                 <div class="dialog">
-                    <table>
+                    <table style="background-color: #a8a8a8; margin: 10px; padding: 10px; border: 1px outset black;">
                         <tbody>
                         
                             <tr class="prop">
@@ -45,7 +46,16 @@
                                     <g:passwordField name="password" value="${userInstance?.password}" />
                                 </td>
                             </tr>
-                        
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="cpassword"><g:message code="user.password.label" default="Confirm password" /></label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="password" id="cpassword" />
+                                </td>
+                            </tr>
+                                                   
                         </tbody>
                     </table>
                 </div>
