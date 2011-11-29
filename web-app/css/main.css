@@ -316,3 +316,18 @@ th.desc a {
     margin-left: 10px;
     padding-left: 10px;
 }
+
+.album > div {
+    padding: 3px;
+    margin: 3px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: right;
+}
+
+#reviews {
+    padding: 5px;
+    margin: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
