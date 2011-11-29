@@ -21,51 +21,31 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            
-            <div class="dialog">
-                <table>
-                    <tbody>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.artist.label" default="Artist" /></td>
-                            
-                            <td valign="top" class="value"><g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.name}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.name.label" default="Name" /></td>
-                            
-                            <td valign="top" class="value">${albumInstance?.name}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.year.label" default="Year released" /></td>
-                            
-                            <td valign="top" class="value">${albumInstance?.year}</td>
-                            
-                        </tr>                        
-                                            
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.reviews.label" default="Rating" /></td>
-                            
-                            <td valign="top" style="text-align: left;" class="value">
-                                <div class="rateit" data-rateit-value="${aggregateRating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                                <g:link controller="review" action="list" params="[albumId: albumInstance.id ]">(${albumInstance?.reviews?.size()} reviews)</g:link>
-                            </td>
-                            
-                        </tr>
-                        
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.year.label" default="Artwork" /></td>                         
-                            <td valign="top" class="value"><img src="${createLink(controller: 'album', action: 'viewImage', id: albumInstance.id)}" /></td>
-                            
-                        </tr>                        
-                    
-                    </tbody>
-                </table>
+            <div class="album">
+                <img height="150" src="${createLink(controller: 'album', action: 'viewImage', id: albumInstance.id)}" />
+                <div class="albuminfo">
+                    <div id="artist">
+                        <g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.name}</g:link>
+                    </div>
+                    <div id="album">${albumInstance?.name}</div>
+                    <div id="release">${albumInstance?.year}</div>
+                    <div id="rating"><div class="rateit" data-rateit-value="${aggregateRating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div></div>
+                </div>
             </div>
+            <g:if test="${album.reviews.size() > 0}">
+                <h1>Reviews</h1>
+                <div id="reviews">
+                <g:each var="review" in="${album.reviews}">
+                    <div class="review">
+                        <g:link controller="review" action="show" id="${review.id}">${review.title}</g:link> by ${review.creator.username} <div class="rateit" data-rateit-value="${review.rating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    </div>
+                </g:each>
+                </div>
+            </g:if>
+            <g:else>
+                No reviews have been written for this album yet. <g:link controller="review" action="create" id="${albumInstance?.id}">Write one!</g:link>
+            </g:else>
+            <!--
             <div class="buttons">
                 <g:form>
                     <g:hiddenField name="id" value="${albumInstance?.id}" />
@@ -73,6 +53,7 @@
                     <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </g:form>
             </div>
+            -->
         </div>
     </body>
 </html>
