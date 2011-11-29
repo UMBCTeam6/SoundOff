@@ -30,7 +30,7 @@ class ReviewController {
     def create = {
         def reviewInstance = new Review()
         reviewInstance.properties = params
-        return [reviewInstance: reviewInstance]
+        return [reviewInstance: reviewInstance, albumId: (params.id ?: 1)]
     }
 
     def save = {
@@ -38,7 +38,7 @@ class ReviewController {
         reviewInstance.creator = springSecurityService.currentUser
         
         if (reviewInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])}"
+            flash.message = "Review of ${review.album.name} added."
             redirect(action: "show", id: reviewInstance.id)
         }
         else {

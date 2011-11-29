@@ -41,7 +41,7 @@
                                     <label for="album"><g:message code="review.album.label" default="Album" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reviewInstance, field: 'album', 'errors')}">
-                                    <g:select name="album.id" from="${soundoff.Album.list()}" optionKey="id" optionValue="name" value="${reviewInstance?.album?.id}"  />
+                                    <g:select name="album.id" from="${soundoff.Album.list()}" optionKey="id" optionValue="name" value="${albumId}"  />
                                 </td>
                             </tr>
                         

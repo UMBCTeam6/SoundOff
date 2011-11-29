@@ -28,8 +28,7 @@
             <g:if test="${recentReviews.size() > 0}">
                 <g:each var="rev" in="${recentReviews}">
                     <div>
-                        <img height="40" src="${createLink(controller: 'album', action: 'viewImage', id: rev.album.id)}" />
-                        <g:link class="title" controller="review" action="show" id="${rev.id}">${rev.title}</g:link> by                       
+                        <g:link controller="review" action="show" id="${rev.id}">${rev.title}</g:link> by                       
                         ${rev.creator.username}                          
                         <div class="rateit" data-rateit-value="${rev.rating}" data-rateit-ispreset="true" data-rateit-readonly="true">
                     </div>
