@@ -38,7 +38,7 @@ class ReviewController {
         reviewInstance.creator = springSecurityService.currentUser
         
         if (reviewInstance.save(flush: true)) {
-            flash.message = "Review of ${review.album.name} added."
+            flash.message = "Review of ${reviewInstance.album.name} added."
             redirect(action: "show", id: reviewInstance.id)
         }
         else {
