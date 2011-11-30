@@ -18,21 +18,25 @@ class ReviewController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def index = {
         redirect(action: "list", params: params)
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [reviewInstanceList: Review.list(params), reviewInstanceTotal: Review.count()]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def create = {
         def reviewInstance = new Review()
         reviewInstance.properties = params
         return [reviewInstance: reviewInstance, albumId: (params.id ?: 1)]
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def save = {
         def reviewInstance = new Review(params)
         reviewInstance.creator = springSecurityService.currentUser
@@ -46,6 +50,7 @@ class ReviewController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def show = {
         def reviewInstance = Review.get(params.id)
         if (!reviewInstance) {
@@ -57,6 +62,7 @@ class ReviewController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def edit = {
         def reviewInstance = Review.get(params.id)
         if (!reviewInstance) {
@@ -68,6 +74,7 @@ class ReviewController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def update = {
         def reviewInstance = Review.get(params.id)
         if (reviewInstance) {
@@ -95,6 +102,7 @@ class ReviewController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def delete = {
         def reviewInstance = Review.get(params.id)
         if (reviewInstance) {
