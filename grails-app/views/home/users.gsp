@@ -1,11 +1,10 @@
 
-<%@ page import="soundoff.Artist" %>
+<%@ page import="soundoff.User" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'artist.label', default: 'Artist')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <title>User list</title>
         <nav:resources />
     </head>
     <body>
@@ -22,22 +21,26 @@
                     <thead>
                         <tr>                        
                             <g:sortableColumn property="name" title="${message(code: 'artist.name.label', default: 'Name')}" />
-                        
+                            <th>Moderator</th>
+                            <th>Admin</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${artistInstanceList}" status="i" var="artistInstance">
+                    <g:each in="${userInstanceList}" status="i" var="userInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">                     
                         
-                            <td><g:link action="show" id="${artistInstance.id}">${fieldValue(bean: artistInstance, field: "name")}</g:link></td>
-                        
+                            <td>${userInstance.username}</td>
+                            
+                            <td><g:link controller="home" action="makeMod" id="${userInstance.id}">Promote</g:link></td>
+                                
+                            <td><g:link controller="home" action="makeAdmin" id="${userInstance.id}">Promote</g:link></td>
                         </tr>
                     </g:each>
                     </tbody>
                 </table>
             </div>
             <div class="paginateButtons">
-                <g:paginate total="${artistInstanceTotal}" />
+                <g:paginate total="${userInstanceTotal}" />
             </div>
         </div>
     </body>

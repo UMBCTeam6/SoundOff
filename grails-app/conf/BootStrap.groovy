@@ -10,9 +10,12 @@ class BootStrap {
 
     def init = { servletContext ->
     
-        // TODO: this should be removed before we deliver to the customer.  this is used for testing only.
+        // set up all of our roles.
+        def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save(failOnError: true)
+        def moderatorRole = Role.findByAuthority('ROLE_MODERATOR') ?: new Role(authority: 'ROLE_MODERATOR').save(failOnError: true)
         def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
     
+        // We would remove the lines below this one if this product was actually being used.
         def adminUser = User.findByUsername('admin') ?: new User(
                 username: 'admin',
                 password: 'admin',
