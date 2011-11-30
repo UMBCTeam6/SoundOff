@@ -23,7 +23,10 @@
             }
         </style>
         <div class="body">
-            <h1>Recent reviews</h1>
+            <sec:ifAllGranted roles="ROLE_ADMIN">
+                <g:link controller="home" action="users">--> Click here to modify users <--</g:link>
+            </sec:ifAllGranted>
+            <div class="title">Recent reviews</div>
             <div id="recent_reviews">
             <g:if test="${recentReviews.size() > 0}">
                 <g:each var="rev" in="${recentReviews}">

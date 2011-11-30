@@ -22,6 +22,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <g:if test="${Review.count() > 0}">
             <div class="list">
                 <table>
                     <thead>
@@ -51,6 +52,10 @@
             <div class="paginateButtons">
                 <g:paginate total="${reviewInstanceTotal}" />
             </div>
+            </g:if>
+            <g:else>
+                No reviews have been written yet. <g:link controller="review" action="create">Write one!</g:link>
+            </g:else>
         </div>
     </body>
 </html>

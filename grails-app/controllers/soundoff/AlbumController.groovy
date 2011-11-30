@@ -87,7 +87,7 @@ class AlbumController {
             }
             albumInstance.properties = params
             if (!albumInstance.hasErrors() && albumInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'album.label', default: 'Album'), albumInstance.id])}"
+                flash.message = "Album '${albumInstance.name}' artwork added."
                 redirect(action: "show", id: albumInstance.id)
             }
             else {
@@ -119,16 +119,21 @@ class AlbumController {
             redirect(action: "list")
         }
     }
-    
+        
     def viewImage = {
-        def albumInstance = Album.get(params.id)
-        if (albumInstance) {
-            response.contentType = "image/jpeg"
-            response.contentLength = albumInstance.artwork.length
-            response.outputStream << albumInstance.artwork
+        def albumInstance = Album.get(params.id)        
+        byte[] artwork
+        
+        if (albumInstance && albumInstance.artwork.size() > 0) 
+        {
+            artwork = albumInstance.artwork 
+        } 
+        else 
+        {
+            artwork = new File(System.properties['base.dir'] + "/web-app/images/missing_artwork.png").getBytes()
         }
-        else {
-            // TODO: show a default?
-        }
+        response.contentType = "image/jpeg"
+        response.contentLength = artwork.size()
+        response.outputStream << artwork
     }
 }

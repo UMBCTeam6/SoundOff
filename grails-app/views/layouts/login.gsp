@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title><g:layoutTitle /></title>
+    <!-- <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" /> -->
     <g:javascript library="jquery" plugin="jquery" />
     <style>
         .fheader {
@@ -10,6 +11,12 @@
             padding: 5px;
             margin: 5px;
         }
+        * {
+            font: 11px verdana,arial,helvetica,sans-serif;
+        }
+        body {
+            text-align: center !important;
+        }   
     </style>
     <script type="text/javascript">
         
@@ -27,7 +34,7 @@
 </head>
 
 <body>
-    <div style="text-align: center; width: 100%">
+    <div align="center" style="text-align: center; width: 100%">
         <img src="${resource(dir:'images', file:'soundoff_logo.png')}" height="250" alt="SoundOff" border="0" />
     </div>
     <g:layoutBody />

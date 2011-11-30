@@ -16,35 +16,16 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-                                       
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="artist.name.label" default="Name" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: artistInstance, field: "name")}</td>
-                            
-                        </tr>
-                        <g:if test="${artistInstance.albums?.size() > 0}">
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="artist.albums.label" default="Albums" /></td>
-                            
-                            <td valign="top" style="text-align: left;" class="value">
-                                <ul>
-                                <g:each in="${artistInstance.albums}" var="a">
-                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.name}</g:link> (${a?.year})</li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                        </g:if>
-                    </tbody>
-                </table>
-            </div>
-            <div class="buttons">
-                
+            <div class="title">${artistInstance.name}</div>
+            <div id="albums">
+            <g:if test="${artistInstance.albums.size() > 0}">
+                <g:each in="${artistInstance.albums.sort { it.year } }" var="a">
+                    <div><g:link controller="album" action="show" id="${a.id}">${a?.name}</g:link> (${a?.year})</div>
+                </g:each>
+            </g:if>
+            <g:else>
+                No albums have been added for this artist.  <g:link controller="album" action="create" id="${artistInstance.id}">Add some!</g:link>
+            </g:else>
             </div>
         </div>
     </body>

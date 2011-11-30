@@ -27,34 +27,7 @@
                 <g:hiddenField name="version" value="${albumInstance?.version}" />
                 <div class="dialog">
                     <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="artist"><g:message code="album.artist.label" default="Artist" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'artist', 'errors')}">
-                                    <g:select name="artist.id" from="${soundoff.Artist.list()}" optionKey="id" optionValue="name" value="${albumInstance?.artist?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="name"><g:message code="album.name.label" default="Name" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'name', 'errors')}">
-                                    <g:textField name="name" value="${albumInstance?.name}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="year"><g:message code="album.year.label" default="Year" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'year', 'errors')}">
-                                    <g:textField name="year" value="${albumInstance.year}" />
-                                </td>
-                            </tr>                  
+                        <tbody>     
                             
                             <tr class="prop">
                                 <td valign="top" class="name">
