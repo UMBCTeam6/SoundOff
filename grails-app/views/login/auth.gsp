@@ -13,7 +13,7 @@
 		</g:if>
 
 		<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
-			<table width="40%" style="background-color: #a8a8a8; margin: 10px; padding: 10px; border: 1px outset black;">
+			<table width="40%" style="background-color: #a8a8a8; margin: 10px; padding: 10px;">
                 <tr>
                     <td align="center"><label for='username'><g:message code="springSecurity.login.username.label"/>:</label></td>
                     <td align="center"><input type='text' class='text_' name='j_username' id='username'/> </td>
