@@ -21,6 +21,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <g:if test="${Album.list().size() > 0}">
             <div class="list">
                 <table>
                     <thead>
@@ -58,6 +59,10 @@
             <div class="paginateButtons">
                 <g:paginate total="${albumInstanceTotal}" />
             </div>
+            </g:if>
+            <g:else>
+                No albums have been added.  <g:link controller="album" action="create">Add some!</g:link>
+            </g:else>
         </div>
     </body>
 </html>
