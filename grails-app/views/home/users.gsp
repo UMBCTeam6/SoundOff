@@ -19,7 +19,7 @@
             <div class="list">
                 <table>
                     <thead>
-                        <tr>                        
+                        <tr>
                             <g:sortableColumn property="name" title="${message(code: 'artist.name.label', default: 'Name')}" />
                             <th>Moderator</th>
                             <th>Admin</th>

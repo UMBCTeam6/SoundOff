@@ -124,7 +124,7 @@ class AlbumController {
         def albumInstance = Album.get(params.id)        
         byte[] artwork
         
-        if (albumInstance && albumInstance.artwork.size() > 0) 
+        if (albumInstance?.artwork?.size() > 0) 
         {
             artwork = albumInstance.artwork 
         } 

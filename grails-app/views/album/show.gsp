@@ -30,13 +30,13 @@
                     <div id="album">${albumInstance?.name}</div>
                     <div id="release">${albumInstance?.year}</div>
                     <div id="rating"><div class="rateit" data-rateit-value="${aggregateRating}" data-rateit-ispreset="true" data-rateit-readonly="true"></div></div>
-                    <g:if test="${albumInstance.artwork.size() == 0}">
+                    <g:if test="${!albumInstance.artwork || albumInstance.artwork?.size() == 0}">
                         <g:link controller="album" action="edit" id="${albumInstance.id}">Add album art</g:link>
                     </g:if>
                 </div>
             </div>
             <div id="reviews">
-            <g:if test="${albumInstance.reviews.size() > 0}">
+            <g:if test="${albumInstance.reviews?.size() > 0}">
                 <h1>Reviews</h1>
                 
                 <g:each var="review" in="${albumInstance.reviews?}">

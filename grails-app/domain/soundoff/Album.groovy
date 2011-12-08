@@ -25,17 +25,20 @@ class Album {
         def rating = 0
         if (reviews.size() > 0)
         {
+            def total = 0;
             rating = reviews.collect { r ->
                 def creatorRole = UserRole.findByUser(r.creator).role.authority
                 if (creatorRole && creatorRole == "ROLE_MODERATOR")
                 {
                     r.rating * 2
+                    total += 2
                 }
                 else 
                 {
                     r.rating
+                    total += 1
                 }                
-            }.sum() / reviews.size()
+            }.sum() / total
         }
         return rating
     }
