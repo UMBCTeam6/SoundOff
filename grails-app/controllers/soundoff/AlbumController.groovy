@@ -31,7 +31,7 @@ class AlbumController {
     def create = {
         def albumInstance = new Album()
         albumInstance.properties = params
-        return [albumInstance: albumInstance]
+        return [albumInstance: albumInstance, artistId: params.artistId ?: 1]
     }
 
     @Secured(['IS_AUTHENTICATED_REMEMBERED'])

@@ -24,7 +24,7 @@
                 </g:each>
             </g:if>
             <g:else>
-                No albums have been added for this artist.  <g:link controller="album" action="create" id="${artistInstance.id}">Add some!</g:link>
+                No albums have been added for this artist.  <g:link controller="album" action="create" params="[artistId : artistInstance.id ]">Add some!</g:link>
             </g:else>
             </div>
         </div>

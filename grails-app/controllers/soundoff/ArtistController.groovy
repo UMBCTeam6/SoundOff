@@ -38,7 +38,7 @@ class ArtistController {
     def save = {
         def artistInstance = new Artist(params)
         if (artistInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'artist.label', default: 'Artist'), artistInstance.id])}"
+            flash.message = "'${artistInstance.name}' created."
             redirect(action: "show", id: artistInstance.id)
         }
         else {
